@@ -1,0 +1,9 @@
+#WARNING as far as i could tell AWS by default does not insert any headers BUT, you can add header insertion here: https://docs.aws.amazon.com/waf/latest/developerguide/customizing-the-incoming-request.html
+#all inserted headers will follow x-amzn-waf- as the perfix so we use that as a basic guide 
+# BEGIN Website Firewall Bypass Prevention
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www.)?defaultdomain.com$
+RewriteCond %{HTTP:x-amzn-waf-} ^$
+RewriteRule ^(.*)$ - [F,L]
+ErrorDocument 403 Forbidden
+# END Website Firewall Bypass Prevention
