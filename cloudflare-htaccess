@@ -1,0 +1,9 @@
+# BEGIN Website Firewall Bypass Prevention
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www.)?defaultdomain.com$
+RewriteCond %{HTTP:CF-RAY} ^$
+RewriteCond %{HTTP:CF-Connecting-IP} ^$
+RewriteCond %{HTTP:X-Forwarded-Proto} ^$
+RewriteRule ^(.*)$ - [F,L]
+ErrorDocument 403 Forbidden
+# END Website Firewall Bypass Prevention
