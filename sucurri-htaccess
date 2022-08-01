@@ -1,0 +1,8 @@
+# BEGIN Website Firewall Bypass Prevention
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www.)?defaultdomain.com$
+RewriteCond %{HTTP:X-SUCURI-CLIENTIP} ^$
+RewriteCond %{HTTP:X-SUCURI-COUNTRY} ^$
+RewriteRule ^(.*)$ - [F,L]
+ErrorDocument 403 Forbidden
+# END Website Firewall Bypass Prevention
